@@ -7,6 +7,9 @@ notification:
 
 os: osx
 
+before_install:
+    - brew outdated llvm37
+
 script:
     - brew list
     - cd /usr/local/Cellar
