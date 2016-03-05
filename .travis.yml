@@ -22,7 +22,7 @@ before_install:
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install llvm37; fi
 
 before_script:
-    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then $CXX --version; CXX=${INSTALL_CXX}; $CXX --version; fi
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then $CXX --version; CXX=clang++-3.7; $CXX --version; fi
 
 script:
     - ls
