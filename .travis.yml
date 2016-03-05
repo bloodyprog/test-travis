@@ -26,5 +26,5 @@ before_script:
     - $CXX --version
 
 script:
-    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ls /usr/lib/llvm-3.7/include; fi
-    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ls /usr/local/opt/llvm37/lib/llvm-3.7/include; fi
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd /usr/lib/llvm-3.7/include; ls; fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cd /usr/local/opt/llvm37/lib/llvm-3.7/include; ls; fi
