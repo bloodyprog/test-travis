@@ -8,8 +8,9 @@ notification:
 os: osx
 
 before_install:
-    - brew tap
+    - brew update
     - brew search llvm37
+    - brew info llvm37
 
 script:
     - brew list
