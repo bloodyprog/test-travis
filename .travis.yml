@@ -5,14 +5,25 @@ notification:
         on_success: never
         on_failure: never
 
-os: osx
+os:
+    - linux
+    - osx
+
+compiler:
+    - clang
+
+addons:
+  apt:
+    sources: [ 'llvm-toolchain-precise-3.7' ]
+    packages: [ 'clang-3.7' ]
 
 before_install:
-    - export HOMEBREW_GITHUB_API_TOKEN=c546650e6386be91992bc502f3ebf662689b91e9
-    - brew update
-    - brew install llvm37
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update ; fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install llvm37; fi
+
+before_script:
+    - if [[ -n "${INSTALL_CXX}" ]]; then CXX=${INSTALL_CXX}; fi
+    - $CCX --version
 
 script:
-    - brew list
-    - cd /usr/local/Cellar
     - ls
