@@ -14,7 +14,7 @@ compiler:
 
 addons:
   apt:
-    sources: [ 'llvm-toolchain-precise-3.7' ]
+    sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.7' ]
     packages: [ 'clang-3.7' ]
 
 before_install:
