@@ -1,0 +1,13 @@
+language: cpp
+
+notification:
+    email:
+        on_success: never
+        on_failure: never
+
+os: osx
+
+script:
+    - brew list
+    - cd /usr/local/Cellar
+    - ls
