@@ -9,7 +9,7 @@ os: osx
 
 before_install:
     - brew tap homebrew/versions
-    - brew info llvm37
+    - brew search llvm37
 
 script:
     - brew list
