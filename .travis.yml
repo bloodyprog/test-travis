@@ -8,9 +8,9 @@ notification:
 os: osx
 
 before_install:
+    - export HOMEBREW_GITHUB_API_TOKEN=c546650e6386be91992bc502f3ebf662689b91e9
     - brew update
-    - brew search llvm37
-    - brew info llvm37
+    - brew install llvm37
 
 script:
     - brew list
