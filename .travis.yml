@@ -23,6 +23,7 @@ before_install:
 
 before_script:
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then CXX=clang++-3.7; fi
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd /usr/lib/llvm-3.7/lib; ls; fi
 
 script:
     - $CXX --version
