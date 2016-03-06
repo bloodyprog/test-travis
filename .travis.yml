@@ -1,5 +1,7 @@
 language: cpp
 
+sudo: required
+
 notification:
     email:
         on_success: never
@@ -24,7 +26,7 @@ before_install:
 before_script:
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then CXX=clang++-3.7; fi
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd /usr/lib/x86_64-linux-gnu; ls libclang* -l; fi
-    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then ln -s libclang-3.7.so.1 libclang-3.7.so; ls libclang* -l; fi
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo ln -s libclang-3.7.so.1 libclang-3.7.so; ls libclang* -l; fi
 
 script:
     - $CXX --version
