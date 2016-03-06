@@ -23,6 +23,6 @@ before_install:
 
 before_script:
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then CXX=clang++-3.7; fi
-    - $CXX --version
 
 script:
+    - $CXX --version
