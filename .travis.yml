@@ -27,5 +27,7 @@ before_script:
 
 script:
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then dpkg -L clang-3.7; fi
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd /usr/lib; ls; fi
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd /usr/lib/llvm-3.7; ls; fi
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then cd /usr/lib/llvm-3.7/include; ls; fi
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then cd /usr/local/opt/llvm37/lib/llvm-3.7/include; ls; fi
