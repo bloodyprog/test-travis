@@ -29,7 +29,8 @@ before_script:
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then CXX=clang++-3.8; fi
 
 script:
-    - pwd
+    - cd /lib/x86_64-linux-gnu
     - ls
+
     - ./premake5 --version
     - $CXX --version
