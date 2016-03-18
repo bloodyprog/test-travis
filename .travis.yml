@@ -18,20 +18,8 @@ addons:
     packages: [ 'clang-3.8' ]
 
 before_install:
-    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-        brew update
-        brew install llvm37
-      fi
-
-    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-        curl -O https://github.com/premake/premake-core/releases/download/v5.0.0-alpha8/premake-5.0.0-alpha8-macosx.tar.gz
-        tar -xf premake-5.0.0-alpha8-macosx.tar.gz
-      fi
-
-    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-        curl -O https://github.com/premake/premake-core/releases/download/v5.0.0-alpha8/premake-5.0.0-alpha8-linux.tar.gz
-        tar -xf premake-5.0.0-alpha8-linux.tar.gz
-      fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then; brew update; brew install llvm37; fi
+    - ./download-premake.sh $TRAVIS_OS_NAME
 
 before_script:
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then CXX=clang++-3.8; fi
