@@ -30,7 +30,7 @@ before_script:
 
 script:
     - cd /lib/x86_64-linux-gnu
-    - ls
+    - ls -l
 
     - ./premake5 --version
     - $CXX --version
