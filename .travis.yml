@@ -43,15 +43,15 @@ before_install:
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         brew update;
         brew install llvm38;
-        clang-3.8 --version
+        clang-3.8 --version;
       fi
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         brew install gcc5;
-        gcc-5 --version
+        gcc-5 --version;
       fi
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         brew install gcc6;
-        gcc-6 --version
+        gcc-6 --version;
       fi
 
     - ./download-premake.sh $TRAVIS_OS_NAME
