@@ -36,8 +36,8 @@ matrix:
 
 addons:
   apt:
-    sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise' ]
-    packages: [ 'clang-3.8' ]
+    sources: [ 'ubuntu-toolchain-r-test' ]
+    packages: [ 'sqlite' ]
 
 before_install:
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
@@ -52,6 +52,9 @@ before_install:
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         brew install gcc6;
         gcc-6 --version;
+      fi
+    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+        brew install sqlite;
       fi
 
     - ./download-premake.sh $TRAVIS_OS_NAME
