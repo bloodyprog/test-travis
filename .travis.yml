@@ -31,9 +31,6 @@ before_install:
 before_script:
     - gcc-5 --version;
     - clang-3.8 --version
-    - sqlite3
-    - .help
-    - .exit
 
 script:
     - ./premake5 --version
