@@ -15,7 +15,7 @@ addons:
     packages:
         - gcc-5
         - clang-3.8
-        - sqlite3
+        - libsqlite3-dev
 
 before_install:
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
