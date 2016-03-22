@@ -68,6 +68,9 @@ before_script:
         CC=${INSTALL_CC};
         $CC --version;
       fi
+    - sqlite3
+      .help
+      .exit
 
 script:
     - ./premake5 --version
