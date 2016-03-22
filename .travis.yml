@@ -27,7 +27,7 @@ before_install:
       fi
 
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-        dkpg -L libsqlite3-dev;
+        dpkg -L libsqlite3-dev;
       fi
 
     - ./download-premake.sh $TRAVIS_OS_NAME
