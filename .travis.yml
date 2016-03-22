@@ -5,72 +5,35 @@ notification:
         on_success: never
         on_failure: never
 
-matrix:
-    include:
-        - os: linux
-          compiler: gcc
-          env: INSTALL_CXX=g++-5 INSTALL_CC=gcc-5
-          addons:
-            apt:
-                sources: [ 'ubuntu-toolchain-r-test' ]
-                packages: [ 'g++-5', 'gcc-5' ]
-
-        #- os: linux
-        #  compiler: gcc
-        #  env: INSTALL_CXX=g++-6 INSTALL_CC=gcc-6
-        #  addons:
-        #    apt:
-        #        sources: [ 'ubuntu-toolchain-r-test' ]
-        #        packages: [ 'g++-6', 'gcc-6' ]
-
-        - os: linux
-          compiler: clang
-          env: INSTALL_CXX=clang++-3.8
-          addons:
-            apt:
-                sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise' ]
-                packages: [ 'clang-3.8' ]
-
-        - os: osx
-          compiler: clang
+os:
+    - linux
+    - osx
 
 addons:
   apt:
-    sources: [ 'ubuntu-toolchain-r-test' ]
-    packages: [ 'sqlite' ]
+    sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise' ]
+    packages:
+        - gcc-5
+        - clang-3.8
+        - sqlite
 
 before_install:
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         brew update;
+        brew install gcc5
+        brew install gcc6
         brew install llvm38;
-        clang-3.8 --version;
-      fi
-    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-        brew install gcc5;
-        gcc-5 --version;
-      fi
-    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-        brew install gcc6;
-        gcc-6 --version;
-      fi
-    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-        brew install sqlite;
+        brew install sqlite
       fi
 
     - ./download-premake.sh $TRAVIS_OS_NAME
 
 before_script:
-    - if [ -n "${INSTALL_CXX}" ]; then
-        CXX=${INSTALL_CXX};
-        $CXX --version;
-      fi
-    - if [ -n "${INSTALL_CC}" ]; then
-        CC=${INSTALL_CC};
-        $CC --version;
-      fi
+    - gcc-5 --version;
+    - clang-3.8 --version
     - sqlite3
-      .help
-      .exit
+    - .help
+    - .exit
 
 script:
     - ./premake5 --version
