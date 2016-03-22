@@ -26,6 +26,10 @@ before_install:
         brew install sqlite;
       fi
 
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+        dkpg -L libsqlite3-dev;
+      fi
+
     - ./download-premake.sh $TRAVIS_OS_NAME
 
 before_script:
