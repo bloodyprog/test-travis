@@ -5,9 +5,33 @@ notification:
         on_success: never
         on_failure: never
 
-os:
-    - linux
-    - osx
+matrix:
+    include:
+        - os: linux
+          compiler: gcc
+          env: LINUX_MAIN
+          addons:
+            apt:
+                sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.7' ]
+                packages:
+                    - gcc-5
+                    - clang-3.7
+                    - libsqlite3-dev
+
+        - os: linux
+          compiler: gcc
+          env: LINUX_TEST_CLANG_38
+          addons:
+            apt:
+                sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise' ]
+                packages:
+                    - clang-3.8
+
+        - os: osx
+          compiler: clang
+
+    allow_failures:
+        env: LINUX_TEST_CLANG_38
 
 addons:
   apt:
@@ -33,15 +57,15 @@ before_install:
     - ./download-premake.sh $TRAVIS_OS_NAME
 
 before_script:
+    - if [[ $LINUX_MAIN ]]; then
+        gcc-5 --version;
+        clang-3.7 -- version;
+      fi
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         cat ~/apt-get-update.log;
-      fi
-    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         cat /etc/apt/sources.list;
+        clang-3.8 --version;
       fi
-
-    - gcc-5 --version;
-    - clang-3.8 --version
 
 script:
     - ./premake5 --version
