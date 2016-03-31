@@ -36,8 +36,8 @@ before_script:
     - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
         cat ~/apt-get-update.log;
       fi
-      - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-          cat /etc/apt/sources.list;
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+        cat /etc/apt/sources.list;
       fi
 
     - gcc-5 --version;
