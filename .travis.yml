@@ -50,7 +50,7 @@ before_install:
         brew install sqlite;
       fi
 
-    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+    - if [[ $LINUX_MAIN ]]; then
         dpkg -L libsqlite3-dev;
       fi
 
@@ -61,7 +61,8 @@ before_script:
         gcc-5 --version;
         clang-3.7 -- version;
       fi
-    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+
+    - if [[ $LINUX_TEST_CLANG_38 ]]; then
         cat ~/apt-get-update.log;
         cat /etc/apt/sources.list;
         clang-3.8 --version;
