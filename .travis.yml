@@ -33,7 +33,10 @@ before_install:
     - ./download-premake.sh $TRAVIS_OS_NAME
 
 before_script:
-    - cat ~/apt-get-update.log
+    - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+        cat ~/apt-get-update.log;
+      fi
+
     - gcc-5 --version;
     - clang-3.8 --version
 
