@@ -9,7 +9,7 @@ matrix:
     include:
         - os: linux
           compiler: gcc
-          env: LINUX_MAIN
+          env: LINUX_TEST=main
           addons:
             apt:
                 sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.7' ]
@@ -20,7 +20,7 @@ matrix:
 
         - os: linux
           compiler: gcc
-          env: LINUX_TEST_CLANG_38
+          env: LINUX_TEST=clang-3.8
           addons:
             apt:
                 sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise' ]
@@ -50,19 +50,19 @@ before_install:
         brew install sqlite;
       fi
 
-    - if [[ -v "$LINUX_MAIN" ]]; then
+    - if [[ "$LINUX_TEST" == "main" ]]; then
         dpkg -L libsqlite3-dev;
       fi
 
     - ./download-premake.sh $TRAVIS_OS_NAME
 
 before_script:
-    - if [[ -v "$LINUX_MAIN" ]]; then
+    - if [[ "$LINUX_TEST" == "main" ]]; then
         gcc-5 --version;
         clang-3.7 -- version;
       fi
 
-    - if [[ -v "$LINUX_TEST_CLANG_38" ]]; then
+    - if [[ "$LINUX_TEST" == "clang-3.8" ]]; then
         cat ~/apt-get-update.log;
         cat /etc/apt/sources.list;
         clang-3.8 --version;
