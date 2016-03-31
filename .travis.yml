@@ -11,10 +11,10 @@ os:
 
 addons:
   apt:
-    sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise' ]
+    sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.8' ]
     packages:
         - gcc-5
-        - clang-3.8-dev
+        - clang-3.8
         - libsqlite3-dev
 
 before_install:
