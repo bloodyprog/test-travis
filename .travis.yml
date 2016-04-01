@@ -20,7 +20,7 @@ matrix:
           env: LINUX_TEST=clang-3.6
           addons:
             apt:
-                sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise', 'llvm-toolchain-precise-3.6' ]
+                sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.6' ]
                 packages:
                     - clang-3.6
 
@@ -29,7 +29,7 @@ matrix:
           env: LINUX_TEST=clang-3.7
           addons:
             apt:
-                sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise', 'llvm-toolchain-precise-3.7' ]
+                sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.7' ]
                 packages:
                     - clang-3.7
 
