@@ -20,24 +20,24 @@ matrix:
           env: LINUX_TEST=clang-3.6
           addons:
             apt:
-                sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.6' ]
-                packages: [ 'llvm-3.6-dev', 'clang-3.6' ]
+                sources:  [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.6' ]
+                packages: [ 'clang-3.6' ]
 
         - os: linux
           compiler: clang
           env: LINUX_TEST=clang-3.7
           addons:
             apt:
-                sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.7' ]
-                packages: [ 'llvm-3.7-dev', 'clang-3.7' ]
+                sources:  [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.7' ]
+                packages: [ 'clang-3.7-dev' ]
 
         - os: linux
           compiler: clang
           env: LINUX_TEST=clang-3.8
           addons:
             apt:
-                sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise' ]
-                packages: [ 'llvm-3.8-dev', 'clang-3.8' ]
+                sources:  [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise' ]
+                packages: [ 'clang-3.8' ]
 
         - os: osx
           compiler: clang
@@ -70,18 +70,21 @@ before_script:
     - if [[ "$LINUX_TEST" == "clang-3.6" ]]; then
         ls /usr/lib/llvm-3.6;
         ls /usr/lib/llvm-3.6/include;
+        ls /usr/lib/llvm-3.6/lib/*clang.*;
         clang-3.6 --version;
       fi
 
     - if [[ "$LINUX_TEST" == "clang-3.7" ]]; then
         ls /usr/lib/llvm-3.7;
         ls /usr/lib/llvm-3.7/include;
+        ls /usr/lib/llvm-3.7/lib/*clang.*;
         clang-3.7 --version;
       fi
 
     - if [[ "$LINUX_TEST" == "clang-3.8" ]]; then
         ls /usr/lib/llvm-3.8;
         ls /usr/lib/llvm-3.8/include;
+        ls /usr/lib/llvm-3.8/lib/*clang.*;
         clang-3.8 --version;
       fi
 
