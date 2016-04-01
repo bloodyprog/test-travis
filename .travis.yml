@@ -71,20 +71,21 @@ before_script:
       fi
 
     - if [[ "$LINUX_TEST" == "clang-3.6" ]]; then
-        ls -l /usr/lib/llvm-3.6/;
+        ls -l /usr/lib/llvm-3.6/bin;
         clang-3.6 --version;
       fi
 
     - if [[ "$LINUX_TEST" == "clang-3.7" ]]; then
-        ls -l /usr/lib/llvm-3.7/;
+        ls -l /usr/lib/llvm-3.7/bin;
         clang-3.7 --version;
       fi
 
     - if [[ "$LINUX_TEST" == "clang-3.8" ]]; then
-        ls -l /usr/lib/llvm-3.8/;
+        ls -l /usr/lib/llvm-3.8/bin;
         clang-3.8 --version;
       fi
 
 script:
+    - printenv
     - ./premake5 --version
     - $CXX --version
