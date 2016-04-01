@@ -1,9 +1,7 @@
 language: cpp
 
 notification:
-    email:
-        on_success: never
-        on_failure: never
+    email: false
 
 matrix:
     include:
@@ -15,7 +13,6 @@ matrix:
                 sources: [ 'ubuntu-toolchain-r-test' ]
                 packages:
                     - gcc-5
-                    - clang-3.7
                     - libsqlite3-dev
 
         - os: linux
@@ -40,6 +37,7 @@ matrix:
           compiler: clang
 
     allow_failures:
+        - env: LINUX_TEST=clang-3.7
         - env: LINUX_TEST=clang-3.8
 
 before_install:
@@ -62,10 +60,12 @@ before_script:
         gcc-5 --version;
       fi
     - if [[ "$LINUX_TEST" == "clang-3.7" ]]; then
+        ls /usr/lib/;
         clang-3.7 -- version;
       fi
 
     - if [[ "$LINUX_TEST" == "clang-3.8" ]]; then
+        ls /usr/lib/;
         clang-3.8 --version;
       fi
 
