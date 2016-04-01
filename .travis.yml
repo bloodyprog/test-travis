@@ -89,6 +89,5 @@ before_script:
       fi
 
 script:
-    - printenv
     - ./premake5 --version
     - $CXX --version
