@@ -12,14 +12,23 @@ matrix:
           env: LINUX_TEST=main
           addons:
             apt:
-                sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.7' ]
+                sources: [ 'ubuntu-toolchain-r-test' ]
                 packages:
                     - gcc-5
                     - clang-3.7
                     - libsqlite3-dev
 
         - os: linux
-          compiler: gcc
+          compiler: clang
+          env: LINUX_TEST=clang-3.7
+          addons:
+            apt:
+                sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.7' ]
+                packages:
+                    - clang-3.7
+
+        - os: linux
+          compiler: clang
           env: LINUX_TEST=clang-3.8
           addons:
             apt:
@@ -32,14 +41,6 @@ matrix:
 
     allow_failures:
         - env: LINUX_TEST=clang-3.8
-
-addons:
-  apt:
-    sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise' ]
-    packages:
-        - gcc-5
-        - clang-3.8
-        - libsqlite3-dev
 
 before_install:
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
@@ -60,7 +61,7 @@ before_script:
     - if [[ "$LINUX_TEST" == "main" ]]; then
         gcc-5 --version;
       fi
-    - if [[ "$LINUX_TEST" == "main" ]]; then
+    - if [[ "$LINUX_TEST" == "clang-3.7" ]]; then
         clang-3.7 -- version;
       fi
 
