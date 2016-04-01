@@ -3,6 +3,12 @@ language: cpp
 notification:
     email: false
 
+addons:
+    apt:
+        sources: [ 'ubuntu-toolchain-r-test' ]
+        packages:
+            - libsqlite3-dev
+
 matrix:
     include:
         - os: linux
