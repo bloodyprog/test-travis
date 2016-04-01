@@ -29,7 +29,7 @@ matrix:
           addons:
             apt:
                 sources:  [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.7' ]
-                packages: [ 'clang-3.7-dev' ]
+                packages: [ 'clang-3.7' ]
 
         - os: linux
           compiler: clang
