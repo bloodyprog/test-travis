@@ -17,6 +17,15 @@ matrix:
 
         - os: linux
           compiler: clang
+          env: LINUX_TEST=clang-3.6
+          addons:
+            apt:
+                sources: [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.6' ]
+                packages:
+                    - clang-3.6
+
+        - os: linux
+          compiler: clang
           env: LINUX_TEST=clang-3.7
           addons:
             apt:
@@ -37,6 +46,7 @@ matrix:
           compiler: clang
 
     allow_failures:
+        - env: LINUX_TEST=clang-3.6
         - env: LINUX_TEST=clang-3.7
         - env: LINUX_TEST=clang-3.8
 
@@ -59,13 +69,19 @@ before_script:
     - if [[ "$LINUX_TEST" == "main" ]]; then
         gcc-5 --version;
       fi
+
+    - if [[ "$LINUX_TEST" == "clang-3.6" ]]; then
+        ls -l /usr/lib/;
+        clang-3.6 -- version;
+      fi
+
     - if [[ "$LINUX_TEST" == "clang-3.7" ]]; then
-        ls /usr/lib/;
+        ls -l /usr/lib/;
         clang-3.7 -- version;
       fi
 
     - if [[ "$LINUX_TEST" == "clang-3.8" ]]; then
-        ls /usr/lib/;
+        ls -l /usr/lib/;
         clang-3.8 --version;
       fi
 
