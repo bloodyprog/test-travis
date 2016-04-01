@@ -31,7 +31,7 @@ matrix:
           compiler: clang
 
     allow_failures:
-        env: LINUX_TEST_CLANG_38
+        env: LINUX_TEST
 
 addons:
   apt:
@@ -59,12 +59,12 @@ before_install:
 before_script:
     - if [[ "$LINUX_TEST" == "main" ]]; then
         gcc-5 --version;
+      fi
+    - if [[ "$LINUX_TEST" == "main" ]]; then
         clang-3.7 -- version;
       fi
 
     - if [[ "$LINUX_TEST" == "clang-3.8" ]]; then
-        cat ~/apt-get-update.log;
-        cat /etc/apt/sources.list;
         clang-3.8 --version;
       fi
 
