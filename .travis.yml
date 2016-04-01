@@ -71,23 +71,20 @@ before_script:
       fi
 
     - if [[ "$LINUX_TEST" == "clang-3.6" ]]; then
-        dpkg -L clang-3.6;
-        ls -l /usr/lib/llvm-3.6/include;
-        clang++-3.6 --version;
+        #dpkg -L clang-3.6;
+        ls /usr/lib/llvm-3.6/include;
         clang-3.6 --version;
       fi
 
     - if [[ "$LINUX_TEST" == "clang-3.7" ]]; then
-        dpkg -L clang-3.7;
-        ls -l /usr/lib/llvm-3.7/include;
-        clang++-3.7 --version;
+        #dpkg -L clang-3.7;
+        ls /usr/lib/llvm-3.7/include;
         clang-3.7 --version;
       fi
 
     - if [[ "$LINUX_TEST" == "clang-3.8" ]]; then
-        dpkg -L clang-3.8;
-        ls -l /usr/lib/llvm-3.8/include;
-        clang++-3.8 --version;
+        #dpkg -L clang-3.8;
+        ls /usr/lib/llvm-3.8/include;
         clang-3.8 --version;
       fi
 
