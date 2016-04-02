@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [[ "$TRAVIS" == "true" ]]; then
-    echo "DetectTravis: YES!"
+if [[ -z ${TRAVIS} ]]; then
+    echo "Detect Travis: not travis..."
 else
-    echo "DetectTravis: no..."
+    echo "Detect Travis: travis!"
 fi
