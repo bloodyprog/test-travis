@@ -89,5 +89,6 @@ before_script:
       fi
 
 script:
+    - ./detect-travis.sh
     - ./premake5 --version
     - $CXX --version
