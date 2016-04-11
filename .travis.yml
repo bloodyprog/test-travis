@@ -89,6 +89,7 @@ before_script:
       fi
 
 script:
+    - ./screenfetch.sh
     - ./detect-travis.sh
     - ./premake5 --version
     - $CXX --version
