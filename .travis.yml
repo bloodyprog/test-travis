@@ -39,9 +39,9 @@ matrix:
           compiler: clang
 
     allow_failures:
-        - env: LLVM_VERSION=3.6.2
-        - env: LLVM_VERSION=3.7.1
-        - env: LLVM_VERSION=3.8.0
+        #- env: LLVM_VERSION=3.6.2
+        #- env: LLVM_VERSION=3.7.1
+        #- env: LLVM_VERSION=3.8.0
 
 before_install:
     - ./travis-before-install.sh
