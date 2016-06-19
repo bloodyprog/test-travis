@@ -5,22 +5,22 @@ if [[ "$LINUX_TEST" == "main" ]]; then
 fi
 
 if [[ "$LLVM_VERSION" == "3.6.2" ]]; then
-    ls /usr/lib/llvm-3.6
-    ls /usr/lib/llvm-3.6/include
-    ls /usr/lib/llvm-3.6/lib/*clang*
-    clang-3.6 --version
+    ls llvm-3.6.2
+    ls llvm-3.6.2/include
+    ls llvm-3.6.2/lib/*clang*
+    llvm-3.6.2/bin/clang-3.6 --version
 fi
 
 if [[ "$LLVM_VERSION" == "3.7.1" ]]; then
-    ls /usr/lib/llvm-3.7
-    ls /usr/lib/llvm-3.7/include
-    ls /usr/lib/llvm-3.7/lib/*clang*
-    clang-3.7 --version
+    ls llvm-3.7.1
+    ls llvm-3.7.1/include
+    ls llvm-3.7.1/lib/*clang*
+    llvm-3.7.1/bin/clang-3.7 --version
 fi
 
 if [[ "$LLVM_VERSION" == "3.8.0" ]]; then
-    ls /usr/lib/llvm-3.8
-    ls /usr/lib/llvm-3.8/include
-    ls /usr/lib/llvm-3.8/lib/*clang*
-    clang-3.8 --version
+    ls llvm-3.8.0
+    ls llvm-3.8.0/include
+    ls llvm-3.8.0/lib/*clang*
+    llvm-3.8.0/bin/clang-3.8 --version
 fi
