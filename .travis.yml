@@ -44,51 +44,10 @@ matrix:
         - env: LLVM_VERSION=3.8.0
 
 before_install:
-    - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-        brew update;
-        brew install gcc5;
-        brew install gcc6;
-        brew install llvm38;
-        brew install sqlite;
-      fi
-
-    - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
-        if [ -z "$(ls -A llvm-$LLVM_VERSION)" ]; then
-          wget -O llvm-$LLVM_VERSION.tar.xz http://llvm.org/releases/$LLVM_VERSION/clang+llvm-$LLVM_VERSION-x86_64-linux-gnu-ubuntu-14.04.tar.xz;
-          mkdir llvm-$LLVM_VERSION;
-          xzcat llvm-$LLVM_VERSION.tar.xz | tar -xvf - --strip 1 -C llvm-$LLVM_VERSION;
-        fi;
-        llvm-$LLVM_VERSION/bin/llvm-config --version;
-        export LLVM_CONFIG="llvm-$LLVM_VERSION/bin/llvm-config";
-      fi
-
-    - ./download-premake.sh $TRAVIS_OS_NAME
+    - ./travis-before-install.sh
 
 before_script:
-    - if [[ "$LINUX_TEST" == "main" ]]; then
-        gcc-5 --version;
-      fi
-
-    - if [[ "$LINUX_TEST" == "clang-3.6" ]]; then
-        ls /usr/lib/llvm-3.6;
-        ls /usr/lib/llvm-3.6/include;
-        ls /usr/lib/llvm-3.6/lib/*clang*;
-        clang-3.6 --version;
-      fi
-
-    - if [[ "$LINUX_TEST" == "clang-3.7" ]]; then
-        ls /usr/lib/llvm-3.7;
-        ls /usr/lib/llvm-3.7/include;
-        ls /usr/lib/llvm-3.7/lib/*clang*;
-        clang-3.7 --version;
-      fi
-
-    - if [[ "$LINUX_TEST" == "clang-3.8" ]]; then
-        ls /usr/lib/llvm-3.8;
-        ls /usr/lib/llvm-3.8/include;
-        ls /usr/lib/llvm-3.8/lib/*clang*;
-        clang-3.8 --version;
-      fi
+    - ./travis-before-script.sh
 
 script:
     - ./screenfetch.sh
