@@ -1,9 +1,15 @@
 language: cpp
-
 sudo: false
+dist: trusty
 
 notification:
     email: false
+
+cache:
+    directories:
+        - llvm-3.6.2
+        - llvm-3.7.1
+        - llvm-3.8.0
 
 matrix:
     include:
@@ -19,35 +25,23 @@ matrix:
 
         - os: linux
           compiler: clang
-          env: LINUX_TEST=clang-3.6
-          addons:
-            apt:
-                sources:  [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.6' ]
-                packages: [ 'clang-3.6', 'libclang-3.6-dev' ]
+          env: LLVM_VERSION=3.6.2
 
         - os: linux
           compiler: clang
-          env: LINUX_TEST=clang-3.7
-          addons:
-            apt:
-                sources:  [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.7' ]
-                packages: [ 'clang-3.7', 'libclang-3.7-dev' ]
+          env: LLVM_VERSION=3.7.1
 
         - os: linux
           compiler: clang
-          env: LINUX_TEST=clang-3.8
-          addons:
-            apt:
-                sources:  [ 'ubuntu-toolchain-r-test', 'llvm-toolchain-precise-3.8' ]
-                packages: [ 'clang-3.8', 'libclang-3.8-dev' ]
+          env: LLVM_VERSION=3.8.0
 
         - os: osx
           compiler: clang
 
     allow_failures:
-        - env: LINUX_TEST=clang-3.6
-        - env: LINUX_TEST=clang-3.7
-        - env: LINUX_TEST=clang-3.8
+        - env: LLVM_VERSION=3.6.2
+        - env: LLVM_VERSION=3.7.1
+        - env: LLVM_VERSION=3.8.0
 
 before_install:
     - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
@@ -58,8 +52,14 @@ before_install:
         brew install sqlite;
       fi
 
-    - if [[ "$LINUX_TEST" == "main" ]]; then
-        dpkg -L libsqlite3-dev;
+    - if [ "${TRAVIS_OS_NAME}" = "linux" ]; then
+        if [ -z "$(ls -A llvm-$LLVM_VERSION)" ]; then
+          wget -O llvm-$LLVM_VERSION.tar.xz http://llvm.org/releases/$LLVM_VERSION/clang+llvm-$LLVM_VERSION-x86_64-linux-gnu-ubuntu-14.04.tar.xz;
+          mkdir llvm-$LLVM_VERSION;
+          xzcat llvm-$LLVM_VERSION.tar.xz | tar -xvf - --strip 1 -C llvm-$LLVM_VERSION;
+        fi;
+        llvm-$LLVM_VERSION/bin/llvm-config --version;
+        export LLVM_CONFIG="llvm-$LLVM_VERSION/bin/llvm-config";
       fi
 
     - ./download-premake.sh $TRAVIS_OS_NAME
@@ -89,7 +89,6 @@ before_script:
         ls /usr/lib/llvm-3.8/lib/*clang*;
         clang-3.8 --version;
       fi
-
 
 script:
     - ./screenfetch.sh
