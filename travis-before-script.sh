@@ -8,7 +8,7 @@ if [[ "$LLVM_VERSION" == "3.6.2" ]]; then
     ls llvm-3.6.2
     ls llvm-3.6.2/include
     ls llvm-3.6.2/lib/*clang*
-    llvm-3.6.2/bin/clang-3.6 --version
+    llvm-3.6.2/bin/clang --version
 fi
 
 if [[ "$LLVM_VERSION" == "3.7.1" ]]; then
