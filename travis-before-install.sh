@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "$(tput setaf 2)Travis Install Script$(tput sgr 0)"
+
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
     brew update
     brew install gcc5
