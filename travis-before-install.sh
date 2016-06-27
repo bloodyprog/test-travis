@@ -11,7 +11,7 @@ if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
 fi
 
 if [[ "${TRAVIS_OS_NAME}" = "linux" ]]; then
-    if [[ ! -d "llvm-$LLVM_VERSION" ]];
+    if [[ ! -d "llvm-$LLVM_VERSION" ]]; then
       echo "$(tput setaf 6)$(tput bold)Downloading...(tput sgr 0)"
       wget -O llvm-$LLVM_VERSION.tar.xz http://llvm.org/releases/$LLVM_VERSION/clang+llvm-$LLVM_VERSION-x86_64-linux-gnu-ubuntu-14.04.tar.xz
       mkdir llvm-$LLVM_VERSION
