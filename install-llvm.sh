@@ -9,10 +9,7 @@ echo "$(tput setaf 6)$(tput bold)> [llvm]$(tput sgr 0)"
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
 
     brew update
-    brew install gcc5
-    brew install gcc6
     brew install llvm38
-    brew install sqlite
 
 else
 

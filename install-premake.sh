@@ -27,9 +27,11 @@ else
         git clone --depth=1 --recursive -b $branch --single-branch $github premake-core
     else
         echo "$(tput setaf 2)$(tput bold)> [premake] already cloned from github$(tput sgr 0)"
+
+        ls $premake_root
     fi
 
-    if [[ ! -e $premake_root/bin/release/premake5 ]]; then
+    if [[ ! -f $premake_root/bin/release/premake5 ]]; then
         echo "$(tput setaf 3)$(tput bold)> [premake] compiling$(tput sgr 0)"
 
         cd $premake_root
