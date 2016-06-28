@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "$(tput setaf 2)Travis Script$(tput sgr 0)"
+echo "$(tput setaf 2)$(tput bold)Travis Script$(tput sgr 0)"
 
 if [[ "$LINUX_TEST" == "main" ]]; then
     gcc-5 --version
