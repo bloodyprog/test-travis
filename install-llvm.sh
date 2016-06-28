@@ -28,7 +28,6 @@ else
       echo "$(tput setaf 2)$(tput bold)> [llvm] already downloaded$(tput sgr 0)"
     fi
 
-    $llvm_root/bin/llvm-config --version
     export LLVM_CONFIG="$llvm_root/bin/llvm-config"
 
 fi

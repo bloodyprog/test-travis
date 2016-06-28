@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -e
+set -x
 
 os_name=$1
 
