@@ -12,7 +12,7 @@ pushd $dependencies_root > /dev/null
 
 ls -l
 
-../install-llvm.sh $TRAVIS_OS_NAME
+#../install-llvm.sh $TRAVIS_OS_NAME
 ../install-premake.sh $TRAVIS_OS_NAME
 
 popd > /dev/null
